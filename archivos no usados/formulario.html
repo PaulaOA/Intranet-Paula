@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Formulario</title>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+</head>
+<body>
+	<form id="form" method="POST">
+		<label>Usuario</label>
+		<input type="text" name="txtUsuario" id="usuario">
+		<label>Clave</label>
+		<input type="text" name="txtClave" id="clave">
+		<button id="btnAcceso">Acceder</button>
+	</form>
+
+	<script>
+		$(document).ready(function(){
+			$("#btnAcceso").click(function(event){
+			    event.preventDefault();
+			    $.ajax({
+			    	type:"POST",
+			    	url: "iniciar-sesion.php",
+			    	data: $("#form").serialize(),
+			    	success: function(response){
+			    		if(response == 1){
+			    			alert("inicio exitoso");
+			    		} else {
+			    			alert("No se pudo iniciar sesión");
+			    		}
+			    	}
+
+			    });
+			    return false;
+			});
+		});
+
+</script>
+</body>
+
+
+</html>
